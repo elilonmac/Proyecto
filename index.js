@@ -14,3 +14,5 @@ conexion.sequelize
     console.log(nombre)
   })
 
+  
+
