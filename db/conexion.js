@@ -4,7 +4,6 @@ const sequelize = new Sequelize('Estudio', 'postgres', 'Granada@4444237123', {
   host: '192.168.0.51',
   dialect: 'postgres',
   operatorsAliases: false,
-
   pool: {
     max: 5,
     min: 0,
@@ -13,13 +12,12 @@ const sequelize = new Sequelize('Estudio', 'postgres', 'Granada@4444237123', {
   },
 });
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Coneccion OK');
-  })
-  .catch(err => {
-    console.error('Sin Coneccion:', err);
-  });
+const db ={};
 
-  module.exports.sequelize = sequelize
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+// Modelos
+db.cursos = require('../models/cursos.model.js')(sequelize,Sequelize);
+
+module.exports = db;
