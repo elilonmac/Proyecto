@@ -19,5 +19,12 @@ db.sequelize = sequelize;
 
 // Modelos
 db.cursos = require('../models/cursos.model.js')(sequelize,Sequelize);
-
+db.materias = require('../models/materias.model.js')(sequelize,Sequelize);
+db.estudiantes = require('../models/estudiantes.model.js')(sequelize,Sequelize);
+db.estudiantes.belongsTo(db.cursos);
+//db.estudiantesmaterias = require('../models/estudiantesmaterias.model.js')(sequelize,Sequelize);
+//db.estudiantes.hasMany(db.estudiantesmaterias);
+///db.materias.hasMany(db.estudiantesmaterias);
+db.estudiantes.belongsToMany(db.materias, {through:'estudiantesmaterias'});
+db.materias.belongsToMany(db.estudiantes,{through:'estudiantesmaterias'});
 module.exports = db;
