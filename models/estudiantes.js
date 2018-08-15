@@ -1,23 +1,25 @@
-const Sequelize = require('sequelize');
-const conexion = require('../db/conexion');
+const Sequelize = require('sequelize')
+const sequelize = require('../db/conexion').sequelize;
 
-const estudiantes = conexion.sequelize.define('estudiantes', {
+module.exports = function(sequelize, DataType){
+  const Estudiantes = sequelize.define('estudiantes', {
     nombre: {
-      type: Sequelize.CHAR
-    }
-    /*,
+      type: Sequelize.STRING
+    },
     telefono: {
-      type: Sequelize.CHAR
+      type: Sequelize.STRING
     },
     idcurso: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
     },
     fechaingreso: {
-        type: Sequelize.DATE
-    }*/
+        type: Sequelize.DATE, defaultValue:Sequelize.NOW
+    }
   });
+  return Estudiantes;
+}
 
-/*estudiantes.findAll().then(estudiantes => {
-    console.log(estudiantes)
+/*estudiantes.findAll().then(Estudiantes => {
+    console.log(Estudiantes)
   })*/
 //module.exports.estudiantes = estudiantes
