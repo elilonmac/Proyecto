@@ -1,7 +1,7 @@
 const db = require('../db/conexion.js');
 const Cursos = db.cursos;
 
-// Crear Curso
+// Crear o Modificar Curso
 exports.createupdate = (req, res) =>{
     if (req.body.id==0){
         Cursos.create(req.body).then(cursos => {
